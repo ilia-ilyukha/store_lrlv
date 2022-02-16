@@ -134,10 +134,10 @@
                     @foreach ($products as $product)
                     <!-- Product -->
                     <div class="product">
-                        <div class="product_image"><img src="images/{{ $product->image }}" alt=""></div>
+                        <div class="product_image"><a href="/product/{{ $product->id }}"><img src="images/{{ $product->image }}" alt=""></a></div>
                         <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">{{ $product->name }}</a></div>
+                            <div class="product_title"><a href="/product/{{ $product->id }}">{{ $product->name }}</a></div>
                             <div class="product_price">${{ $product->price }}</div>
                         </div>
                     </div>
