@@ -34,7 +34,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo"><a href="#">Sublime.</a></div>
+							<div class="logo"><a href="/">Sublime.</a></div>
 							<nav class="main_nav">
 								<ul>
 									<li class="hassubs active">
@@ -226,5 +226,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{ asset('plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('plugins/parallax-js-master/parallax.min.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
+@if (!empty($scripts)) 
+	@foreach ($scripts as $script)
+		<script src="{{ $script }}"></script>
+	@endforeach
+@endif
 </body>
 </html>
