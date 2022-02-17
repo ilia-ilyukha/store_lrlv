@@ -53,7 +53,7 @@
 				<!-- Product Content -->
 				<div class="col-lg-6">
 					<div class="details_content">
-						<div class="details_name">{{$product->name}}</div>
+						<div class="details_name" data-id="{{ $product->id }}">{{$product->name}}</div>
 						<div class="details_discount">$890</div>
 						<div class="details_price">${{$product->price}}</div>
 
@@ -190,4 +190,39 @@
 			</div>
 		</div>
 	</div>
+
+
+	<script>
+        $(document).ready(function () {
+            $('.cart_button').click(function (event) {
+                event.preventDefault()
+                addToCart()
+            })
+        })
+        function addToCart() {
+            let id = $('.details_name').data('id')
+            let qty = parseInt($('#quantity_input').val())
+            let total_qty = parseInt($('.cart-qty').text())
+
+            total_qty += qty
+            $('.cart-qty').text(total_qty)
+            $.ajax({
+                url: "{{route('addToCart')}}",
+                type: "POST",
+                data: {
+                    id: id,
+                    qty: qty,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (data) => {
+                    console.log(data)
+                },
+                error: (data) => {
+                    console.log(data)
+                }
+            });
+        }
+	</script>
 @endsection
