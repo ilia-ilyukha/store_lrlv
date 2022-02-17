@@ -19,6 +19,14 @@ class CartController extends Controller
             "/js/cart.js"
         ];
 
+        if(!isset($_COOKIE['cart_id'])){
+            return view('cart.empty', $data);
+        }
+
+        $cart_id = $_COOKIE['cart_id'];
+        \Cart::session($cart_id);
+        $data['products'] = \Cart::getContent();
+// dd($data['products']);
         return view('cart.index', $data);
     }
 
@@ -38,6 +46,6 @@ class CartController extends Controller
                 'image' => $product->image
             ]
         ]);
-        return \Cart::getContent();
+        return response()->json(\Cart::getContent());
     }
 }
