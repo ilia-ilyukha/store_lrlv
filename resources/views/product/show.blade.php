@@ -217,6 +217,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: (data) => {
+					$('.cart_button a').text('Done');
                     console.log(data)
                 },
                 error: (data) => {

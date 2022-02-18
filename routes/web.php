@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController; 
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\CartController; 
-
-/*
+use App\Http\Controllers\Admin\HomeController as AdminHome;
+/* 
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -25,3 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cartIndex');
 
 Route::post('/add-to-cart', [App\Http\Controllers\CartController::class, 'addToCart'])->name('addToCart');
+
+Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
+    Route::get('/', [AdminHome::class, 'index']);
+});
